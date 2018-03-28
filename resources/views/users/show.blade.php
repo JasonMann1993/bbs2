@@ -16,7 +16,7 @@
                         <div class="media-body">
                             <hr>
                             <h4><strong>个人简介</strong></h4>
-                            <p>{{ $user->introduction }}</p>
+                            <p>{{ $user->introduction  }}</p>
                             <hr>
                             <h4><strong>注册于</strong></h4>
                             <p>{{ $user->created_at->diffForHumans() }}</p>
@@ -38,7 +38,11 @@
             {{-- 用户发布的内容 --}}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    暂无数据 ~_~
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#">Ta 的话题</a></li>
+                        <li><a href="#">Ta 的回复</a></li>
+                    </ul>
+                    @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
                 </div>
             </div>
 
