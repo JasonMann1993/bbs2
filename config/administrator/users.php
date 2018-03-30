@@ -15,8 +15,7 @@ return [
     // 设置当前页面的访问权限，返回布尔值
     'permission' => function()
     {
-        return Auth::user()->can('manage_contents');
-    },
+        return Auth::user()->can('manage_users');    },
 
     // 字段负责渲染「数据表格」，由无数的列组成
     'columns' => [
