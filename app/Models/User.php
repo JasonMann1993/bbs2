@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ActiveUserHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use ActiveUserHelper;
     use HasRoles;
     use Notifiable {
         notify as protected laravelNotify;
