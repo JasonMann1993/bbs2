@@ -41,6 +41,11 @@ class UsersController extends Controller
             ->setStatusCode(201);
     }
 
+    public function activedIndex(User $user)
+    {
+        return $this->response->collection($user->getActiveUsers(), new UserTransformer());
+    }
+
     public function update(UserRequest $request)
     {
 //        return $request->all();
