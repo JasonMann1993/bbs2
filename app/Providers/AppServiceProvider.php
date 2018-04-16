@@ -10,7 +10,9 @@ use App\Observers\LinkObserver;
 use App\Observers\ReplyObserver;
 use App\Observers\TopicObserver;
 use App\Observers\UserObserver;
+use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\ServiceProvider;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,5 +54,14 @@ class AppServiceProvider extends ServiceProvider
             // 是否是站长
             return \Auth::user()->hasRole('Founder');
         });
+
+//        \DB::listen(function (QueryExecuted $query) {
+//            $sqlWithPlaceholders = str_replace(['%', '?'], ['%%', '%s'], $query->sql);
+//
+//            $bindings = $query->connection->prepareBindings($query->bindings);
+//            $pdo = $query->connection->getPdo();
+//
+//            Log::info(vsprintf($sqlWithPlaceholders, array_map([$pdo, 'quote'], $bindings)));
+//        });
     }
 }
