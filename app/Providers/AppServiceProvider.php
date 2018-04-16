@@ -40,6 +40,14 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
         }
 
+        \API::error(function (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) {
+            abort(404);
+        });
+
+        \API::error(function (\Illuminate\Auth\Access\AuthorizationException $exception) {
+            abort(403, $exception->getMessage());
+        });
+
         \Horizon::auth(function ($request) {
             // 是否是站长
             return \Auth::user()->hasRole('Founder');
